@@ -23,6 +23,14 @@
   version = "v1.4.0"
 
 [[projects]]
+  digest = "1:ec6f9bf5e274c833c911923c9193867f3f18788c461f76f05f62bb1510e0ae65"
+  name = "github.com/go-sql-driver/mysql"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "72cd26f257d44c1114970e19afddcd812016007e"
+  version = "v1.4.1"
+
+[[projects]]
   digest = "1:573ca21d3669500ff845bdebee890eb7fc7f0f50c59f2132f2a0c6b03d85086a"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
@@ -74,6 +82,14 @@
   version = "1.0.1"
 
 [[projects]]
+  digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
+  version = "v0.8.1"
+
+[[projects]]
   digest = "1:5a1cf4e370bc86137b58da2ae065e76526d32b11f62a7665f36dbd5f41fa95ff"
   name = "github.com/ugorji/go"
   packages = ["codec"]
@@ -88,6 +104,14 @@
   packages = ["unix"]
   pruneopts = "UT"
   revision = "c178f38b412c7b426e4e97be2e75d11ff7b8d4d4"
+
+[[projects]]
+  digest = "1:c25289f43ac4a68d88b02245742347c94f1e108c534dda442188015ff80669b3"
+  name = "google.golang.org/appengine"
+  packages = ["cloudsql"]
+  pruneopts = "UT"
+  revision = "971852bfffca25b069c31162ae8f247a3dba083b"
+  version = "v1.6.5"
 
 [[projects]]
   digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
@@ -110,7 +134,9 @@
   analyzer-version = 1
   input-imports = [
     "github.com/gin-gonic/gin",
+    "github.com/go-sql-driver/mysql",
     "github.com/jmoiron/sqlx",
+    "github.com/pkg/errors",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
