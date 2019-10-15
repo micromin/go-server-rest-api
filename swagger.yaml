@@ -1,0 +1,274 @@
+consumes:
+- application/json
+definitions:
+  LoginRequest:
+    properties:
+      email:
+        type: string
+        x-go-name: Email
+      password:
+        type: string
+        x-go-name: Password
+    type: object
+    x-go-package: gos/app/models
+  LoginResponse:
+    properties:
+      expiresAt:
+        format: int64
+        type: integer
+        x-go-name: ExpiresAt
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: gos/app/models
+  RegisterRequest:
+    properties:
+      email:
+        type: string
+        x-go-name: Email
+      name:
+        type: string
+        x-go-name: Name
+      password:
+        type: string
+        x-go-name: Password
+    type: object
+    x-go-package: gos/app/models
+  Response:
+    properties:
+      data:
+        type: object
+        x-go-name: Data
+      errors:
+        type: object
+        x-go-name: Errors
+      message:
+        type: string
+        x-go-name: Message
+    type: object
+    x-go-package: gos/app/models
+  Task:
+    properties:
+      dateCompleted:
+        format: int64
+        type: integer
+        x-go-name: DateCompleted
+      dateCreated:
+        format: int64
+        type: integer
+        x-go-name: DateCreated
+      dateUpdated:
+        format: int64
+        type: integer
+        x-go-name: DateUpdated
+      description:
+        type: string
+        x-go-name: Description
+      dueDate:
+        format: int64
+        type: integer
+        x-go-name: DueDate
+      taskId:
+        format: int64
+        type: integer
+        x-go-name: TaskId
+      title:
+        type: string
+        x-go-name: Title
+      userId:
+        format: int64
+        type: integer
+        x-go-name: UserId
+    type: object
+    x-go-package: gos/app/models
+  User:
+    properties:
+      dateCreated:
+        format: int64
+        type: integer
+        x-go-name: DateCreated
+      dateUpdated:
+        format: int64
+        type: integer
+        x-go-name: DateUpdated
+      email:
+        type: string
+        x-go-name: Email
+      failedLoginAttempt:
+        format: int64
+        type: integer
+        x-go-name: FailedLoginAttempt
+      lastLogin:
+        format: int64
+        type: integer
+        x-go-name: LastLogin
+      name:
+        type: string
+        x-go-name: Name
+      password:
+        type: string
+        x-go-name: Password
+      userId:
+        format: int64
+        type: integer
+        x-go-name: UserId
+    type: object
+    x-go-package: gos/app/models
+host: localhost:8080
+info:
+  description: Go simple (gos) is a simple GO server for adding todos.
+  title: GO Simple Server (GOS)
+  version: 0.1.0
+paths:
+  /api/aut/login:
+    post:
+      description: Login holds the functionality for login
+      operationId: Login
+      parameters:
+      - description: the login obj
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Response'
+        "400":
+          description: invalid request
+          schema:
+            $ref: '#/definitions/Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/LoginResponse'
+  /api/aut/register:
+    post:
+      description: Register holds the functionality for registration
+      operationId: Register
+      parameters:
+      - description: the register obj
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Response'
+        "400":
+          description: invalid request
+          schema:
+            $ref: '#/definitions/Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/Response'
+  /api/secured/tasks:
+    get:
+      description: GetTasks gets tasks for the logged in user
+      operationId: GetTasks
+      parameters:
+      - description: the access token
+        in: header
+        name: x-access-token
+        type: string
+      - description: the id of the last task in the response
+        in: query
+        name: lastId
+        type: string
+      - description: the page size value
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Response'
+        "400":
+          description: invalid request
+          schema:
+            $ref: '#/definitions/Response'
+        "401":
+          description: unauthorized access
+          schema:
+            $ref: '#/definitions/Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/Response'
+    post:
+      description: AddTask adds a task
+      operationId: AddTask
+      parameters:
+      - description: the access token
+        in: header
+        name: x-access-token
+        type: string
+      - description: the task to be added
+        in: body
+        name: body
+        schema:
+          $ref: '#/definitions/Task'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Response'
+        "400":
+          description: invalid request
+          schema:
+            $ref: '#/definitions/Response'
+        "401":
+          description: unauthorized access
+          schema:
+            $ref: '#/definitions/Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/Response'
+  /api/secured/tasks/:taskId:
+    get:
+      description: GetTask gets a task for the logged in user
+      operationId: GetTask
+      parameters:
+      - description: the access token
+        in: header
+        name: x-access-token
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Response'
+        "400":
+          description: invalid request
+          schema:
+            $ref: '#/definitions/Response'
+        "401":
+          description: unauthorized access
+          schema:
+            $ref: '#/definitions/Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/Response'
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"
