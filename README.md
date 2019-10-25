@@ -48,3 +48,6 @@ FOREIGN KEY (user_id) REFERENCES GOS_USER(user_id)) ENGINE=InnoDB;
 And finally run `go run main.go`.
 
 The server should be running on port 8080.
+
+For the requests you can use the swagger editor at [Swagger Editor](https://editor.swagger.io/) to see the available request and responses.
+To make request you can use [Postman Client](https://www.getpostman.com/)
