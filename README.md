@@ -1,8 +1,8 @@
-#A Simple Go Restful server with Auth
+# A simple Restful Go server with Auth (using jwt)
 Go simple (gos) is a simple GO server for adding todos. 
 You can register and login and start adding your tasks.
 
-##How to Run
+## How to Run
 First run a docker container for mysql by running
 
 `docker run --name mysql57 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -d mysql/mysql-server:5.7`
