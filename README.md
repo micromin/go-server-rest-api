@@ -49,5 +49,8 @@ And finally run `go run main.go`.
 
 The server should be running on port 8080.
 
-For the requests you can use the swagger editor at [Swagger Editor](https://editor.swagger.io/) to see the available request and responses.
+For the requests you can use the swagger editor at [Swagger Editor](https://editor.swagger.io/) to see the available request and responses. Just copy and paste the swagger.yaml content in the editor.
+
 To make request you can use [Postman Client](https://www.getpostman.com/)
+
+![GOS](gos.png?raw=true "GOS Requests")
